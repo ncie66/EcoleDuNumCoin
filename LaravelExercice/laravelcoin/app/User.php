@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getProfile(){
+
+        return $this->hasOne('Profile','userid');
+    }
+
+    public function hasWritten(){
+
+        return $this->hasMany('BTC','writeid');
+    }
+
+    public function hasRead(){
+
+        return $this->belongsToMany('BTC','userid');
+    }
 }
